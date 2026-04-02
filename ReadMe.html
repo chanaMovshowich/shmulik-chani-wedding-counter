@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>חתונה שמוליק וחני</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Montserrat:wght@900&display=swap');
+
+  body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Assistant', sans-serif;
+    background-image: url('2MB.JPG'); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    direction: rtl;
+  }
+
+  /* הסתרת הנגן לחלוטין */
+  #audio {
+    display: none;
+  }
+
+  h1 {
+    font-weight: 700;
+    text-align: center;
+    font-size: 2em;
+    color: #D4AF37;
+    margin-top: 3%;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .names {
+    display: block;
+    font-size: 1.2em;
+    color: #f7e7ce;
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.3em;
+    color: #D4AF37;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  #timer {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 0px;
+    direction: ltr;
+  }
+
+  .days, .hours, .minutes, .seconds {
+    display: inline-block;
+    padding: 15px;
+    width: 100px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6); 
+    border: 1px solid #D4AF37;
+    margin: 5px;
+    color: #D4AF37;
+    font-weight: 700;
+  }
+
+  .numbers {
+    font-family: 'Montserrat', sans-serif;
+    color: #f7e7ce;
+    font-size: 3em;
+    display: block;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  footer { position: fixed; bottom: 0; right: 0; padding: 10px; font-size: 0.8em; }
+  footer p { color: #D4AF37; margin: 0; }
+</style>
+</head>
+
+<body>
+  <audio id="audio" loop>
+    <source src="חופה.mp3" type="audio/mpeg">
+  </audio>
+
+  <h1>
+    סופרים את הימים לרגעים המרגשים...
+    <span class="names">שמוליק & חני</span>
+  </h1>
+
+  <div id="timer"></div>
+
+  <h2>כ"ה סיון תשפ"ו</h2>
+
+  <footer>
+    <p>made by miri ♡</p>
+  </footer>
+
+  <script>
+    const weddingDate = new Date('2026-06-11T18:00:00').getTime();
+    const audio = document.getElementById('audio');
+
+    // פונקציה להפעלת מוזיקה
+    function startMusic() {
+      audio.play().catch(function(error) {
+        console.log("הדפדפן חסם ניגון אוטומטי, ממתין לאינטראקציה");
+      });
+    }
+
+    // ניסיון הפעלה מיד עם הטעינה
+    window.addEventListener('load', startMusic);
+
+    // הפעלה "כפויה" ברגע שהמשתמש נוגע במסך/לוחץ על העכבר
+    window.addEventListener('click', startMusic, { once: true });
+    window.addEventListener('touchstart', startMusic, { once: true });
+    // עדכון הטיימר
+    function updateTimer() {
+      const now = new Date().getTime();
+      const timeDifference = weddingDate - now;
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML = `
+        <div class="days"><div class="numbers">${days}</div>ימים</div>
+        <div class="hours"><div class="numbers">${hours}</div>שעות</div>
+        <div class="minutes"><div class="numbers">${minutes}</div>דקות</div>
+        <div class="seconds"><div class="numbers">${seconds}</div>שניות</div>
+      `;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>חתונה שמחה ואתי</title>
+  <style>
+ @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900');
+
+$font: 'Lato', sans-serif;
+$big: 'Montserrat', sans-serif;
+
+$red: #EF2F3C;
+$white: #F6F4F3;
+$blue: #276FBF;
+$dark: #183059;
+$yellow: #F0A202;
+
+$star: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  
+html {
+  display: grid;
+  min-height: 100%;
+
+}
+
+body {
+  display: grid;
+  background: $dark;
+     background-image: url('2MB.JPG');
+    background-repeat: no-repeat;
+	  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+h1 {
+  font-family: $font;
+  text-align: center;
+  margin-top: 2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #ffffff;
+	margin-top: 2%;
+}
+h2 {
+  font-family: $font;
+  text-align: center;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #ffffff;
+
+}
+
+#timer {
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: $font;
+  font-size: .7em;
+  letter-spacing: 5px;
+  
+}
+
+.days, .hours, .minutes, .seconds {
+  display: inline-block;
+  padding: 20px;
+  width: 100px;
+  border-radius: 5px;
+   background: #926f6f59;
+}
+
+.days {
+}
+
+.hours {
+ 
+  color: #ffffff;
+}
+
+.minutes {
+
+}
+
+.seconds {
+ 
+  .numbers {
+   
+  }
+}
+
+.numbers {
+  font-family: $big;
+  color: #ffffff;
+  font-size: 4em;
+}
+
+.mouth {
+  position:absolute;
+  top: 45%;
+  left: 43%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.happy {
+  border: 2px solid;
+  border-color: transparent #000 #000 transparent;
+  transform: rotate(45deg);
+}
+
+.triangle {
+  position: absolute;
+  left: 40%;
+  bottom: -10%;
+  width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+}
+
+.string {
+  position: absolute;
+  height: 70px;
+  width: 1px;
+  left: 48%;
+  top: 100%;
+  z-index: -1;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  background: white;
+  -webkit-clip-path: $star;
+  clip-path: $star;
+}
+
+.star-red {
+  width: 30px;
+  height: 30px;
+  margin-left: 51px;
+  margin-top: -5px;
+  background: $red;
+  -webkit-clip-path: $star;
+  clip-path: $star;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-transform: uppercase;
+  padding: 10px;
+  font-family: $font;
+  font-size: 0.7em;
+  p {
+    letter-spacing: 3px;
+    color: $red;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+    }
+  }
+}
+  </style>
+</head>
+<audio  autoplay auto>
+  <source src="חופה.MP3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<iframe src="חופה.mp3" allow="autoplay" id="audio"></iframe>
+<body>
+
+
+
+ <audio controls id="audio">
+  <source src="חופה.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+ 
+
+  
+  <h1>WEDDING DAY COUNTDOWN FOR Simcha & Eti</h1>
+<div id="timer"></div>
+  <footer>
+    <p>made by <a href="https://yourweddingcountdown.com/d1c84">Ester</a> ♡</p>
+  </footer>
+ <h2>כ"א כסלו תשפ"ד</h2>
+  <script>
+    
+
+  const weddingDate = new Date('2023-12-04T18:00:00').getTime();
+    const now = new Date();
+
+    // חישוב הזמן הנותר
+    const timeDifference = weddingDate - now;
+
+    // חישוב ימים, שעות, דקות ושניות
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    // הצגת הזמן הנותר בעמוד
+    document.getElementById("timer").innerHTML =
+      "<div class=\"days\"> \
+      <div class=\"numbers\">" + days + "</div>ימים</div> \
+      <div class=\"hours\"> \
+      <div class=\"numbers\">" + hours + "</div>שעות</div> \
+      <div class=\"minutes\"> \
+      <div class=\"numbers\">" + minutes + "</div>דקות</div> \
+      <div class=\"seconds\"> \
+      <div class=\"numbers\">" + seconds + "</div>שניות</div> \
+    </div>";
+
+    // עדכון הטיימר כל שנייה
+    setInterval(function() {
+      const now = new Date();
+      const timeDifference = weddingDate - now;
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      document.getElementById("timer").innerHTML =
+        "<div class=\"days\"> \
+        <div class=\"numbers\">" + days + "</div>ימים</div> \
+        <div class=\"hours\"> \
+        <div class=\"numbers\">" + hours + "</div>שעות</div> \
+        <div class=\"minutes\"> \
+        <div class=\"numbers\">" + minutes + "</div>דקות</div> \
+        <div class=\"seconds\"> \
+        <div class=\"numbers\">" + seconds + "</div>שניות</div> \
+      </div>";
+    }, 1000);
+  </script>
+</body>
+</html>
